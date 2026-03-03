@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plumbers Didsbury | Professional Plumbing Services</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary-dark: #1a2a44;
+            --secondary-orange: #f39c12;
+            --accent-blue: #3498db;
+            --light-bg: #f8f9fa;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--primary-dark);
+            transition: var(--transition);
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary-orange) !important;
+        }
+
+        /* Hero Carousel */
+        .carousel-item {
+            height: 80vh;
+            min-height: 500px;
+            background-color: #000;
+        }
+        .carousel-item img {
+            opacity: 0.6;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        .carousel-caption {
+            bottom: 25%;
+            text-align: left;
+            z-index: 10;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Buttons */
+        .btn-orange {
+            background: var(--secondary-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            transition: var(--transition);
+        }
+        .btn-orange:hover {
+            background: #d35400;
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        /* Service Cards */
+        .service-card {
+            border: none;
+            border-radius: 15px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            height: 100%;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--secondary-orange);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(243, 156, 18, 0.1);
+            color: var(--secondary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        .gallery-item img {
+            transition: var(--transition);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 68, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Sticky Call Buttons */
+        .sticky-call {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: none;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            background: var(--primary-dark);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        /* Section visibility for Multi-page feel */
+        .page-section {
+            display: none;
+            padding: 80px 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .sticky-call { display: block; }
+            .carousel-item { height: 60vh; }
+        }
+
+        /* Counter Animation */
+        .counter-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-orange);
+            display: block;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 5px solid white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <i data-lucide="droplet" class="text-orange"></i>
+                MY PLUMBERS <span style="color:var(--secondary-orange)">DIDSBURY</span>
+            </a>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('services')">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('gallery')">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+                <a href="tel:+441614102470" class="btn btn-orange ms-lg-3">Call Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE: HOME -->
+    <section id="home" class="page-section active" style="padding: 0;">
+        <!-- Hero Carousel -->
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920" alt="Modern Bathroom">
+                    <div class="carousel-caption container">
+                        <h1 class="hero-title animate__animated animate__fadeInDown">Trusted Plumbing Services <br>in Didsbury</h1>
+                        <p class="fs-5 animate__animated animate__fadeInUp">Professional, reliable, and available 24/7 for all your plumbing emergencies.</p>
+                        <div class="mt-4 animate__animated animate__fadeInUp">
+                            <button class="btn btn-orange me-2" onclick="showPage('contact')">Book a Plumber</button>
+                            <a href="tel:+441614102470" class="btn btn-outline-light px-4 py-2">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920" alt="Repair Work">
+                    <div class="carousel-caption container">
+                        <h1 class="hero-title">Emergency Repairs <br>Done Right</h1>
+                        <p class="fs-5">We handle leaks, bursts, and boiler breakdowns with speed and precision.</p>
+                        <button class="btn btn-orange" onclick="showPage('services')">Our Services</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1920" alt="Boiler">
+                    <div class="carousel-caption container">
+                        <h1 class="hero-title">Quality Workmanship <br>Guaranteed</h1>
+                        <p class="fs-5">Over 15 years serving the Didsbury community with pride.</p>
+                        <button class="btn btn-orange" onclick="showPage('about')">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="container py-5 mt-5">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4">
+                    <h2 class="fw-bold mb-4">Welcome to My Plumbers Didsbury</h2>
+                    <p class="text-muted lead">We are your local experts for everything plumbing. From a leaky tap to a full bathroom renovation, our team of Gas Safe registered engineers is ready to help.</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="text-center">
+                            <span class="counter-number">15+</span>
+                            <small>Years Experience</small>
+                        </div>
+                        <div class="text-center">
+                            <span class="counter-number">5k+</span>
+                            <small>Repairs Completed</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-orange" onclick="showPage('about')">Read Our Story</button>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=800" class="img-fluid rounded-3 shadow" alt="Plumbing Service">
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Preview -->
+        <div class="bg-light py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Our Professional Services</h2>
+                    <div class="mx-auto bg-orange" style="width: 60px; height: 3px;"></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="service-card text-center" onclick="showPage('services')">
+                            <div class="service-icon mx-auto"><i data-lucide="alert-triangle"></i></div>
+                            <h4>Emergency Repairs</h4>
+                            <p>Fast response for leaks, bursts, and blockages any time of day.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card text-center" onclick="showPage('services')">
+                            <div class="service-icon mx-auto"><i data-lucide="flame"></i></div>
+                            <h4>Boiler Services</h4>
+                            <p>Installation, servicing, and repair of all major boiler brands.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card text-center" onclick="showPage('services')">
+                            <div class="service-icon mx-auto"><i data-lucide="bath"></i></div>
+                            <h4>Bathroom Fitting</h4>
+                            <p>Stunning bathroom transformations from design to installation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div class="container py-5">
+            <div class="row text-center mb-5">
+                <h2 class="fw-bold">Why Choose Us?</h2>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-3">
+                    <i data-lucide="check-circle" class="text-orange mb-3" style="width:48px; height:48px;"></i>
+                    <h5>Certified Experts</h5>
+                    <p class="small text-muted">All our engineers are Gas Safe registered.</p>
+                </div>
+                <div class="col-md-3">
+                    <i data-lucide="clock" class="text-orange mb-3" style="width:48px; height:48px;"></i>
+                    <h5>24/7 Available</h5>
+                    <p class="small text-muted">We're here when you need us most, even at 3am.</p>
+                </div>
+                <div class="col-md-3">
+                    <i data-lucide="award" class="text-orange mb-3" style="width:48px; height:48px;"></i>
+                    <h5>Guaranteed Work</h5>
+                    <p class="small text-muted">Peace of mind with a full guarantee on all parts.</p>
+                </div>
+                <div class="col-md-3">
+                    <i data-lucide="pound-sterling" class="text-orange mb-3" style="width:48px; height:48px;"></i>
+                    <h5>Transparent Pricing</h5>
+                    <p class="small text-muted">No hidden fees or surprise charges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: ABOUT US -->
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                    <h6 class="text-orange fw-bold">ABOUT OUR COMPANY</h6>
+                    <h2 class="fw-bold mb-4">Reliable Plumbing with a Personal Touch</h2>
+                    <p>Founded in Didsbury, our company has grown from a single van to a fleet of experts. We believe in providing the community with honest work at fair prices. Our mission is to ensure every household in Didsbury has access to safe, efficient, and professional plumbing services.</p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i data-lucide="target" class="text-orange me-3"></i>
+                            <div>
+                                <strong>Our Mission</strong>
+                                <p class="mb-0 small text-muted">To be the most trusted plumbing partner in South Manchester.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i data-lucide="eye" class="text-orange me-3"></i>
+                            <div>
+                                <strong>Our Vision</strong>
+                                <p class="mb-0 small text-muted">Leading the industry through sustainable plumbing and expert care.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0 animate__animated animate__fadeInRight">
+                    <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=800" class="img-fluid rounded-3 shadow" alt="Our Team">
+                </div>
+            </div>
+            
+            <div class="bg-primary text-white p-5 rounded-4 mt-5 d-flex flex-column flex-md-row justify-content-between align-items-center" style="background: var(--primary-dark) !important;">
+                <div class="mb-4 mb-md-0">
+                    <h3>Need a plumber today?</h3>
+                    <p class="mb-0 opacity-75">Contact us now for a free, no-obligation quote.</p>
+                </div>
+                <a href="tel:+441614102470" class="btn btn-orange btn-lg">Contact Us Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: SERVICES -->
+    <section id="services" class="page-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-orange fw-bold">WHAT WE DO</h6>
+                <h2 class="fw-bold">Our Range of Services</h2>
+            </div>
+            <div class="row g-4">
+                <!-- Emergency -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="alert-circle"></i></div>
+                        <h4>Emergency Plumbing</h4>
+                        <p>Pipe bursts, major leaks, or severe blockages? We offer priority service to get your home back to normal fast.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <!-- Boiler -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="thermometer"></i></div>
+                        <h4>Boiler Repair & Service</h4>
+                        <p>Stay warm all year. We provide annual servicing, fault diagnosis, and installation of energy-efficient boilers.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <!-- Leak Detection -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="search"></i></div>
+                        <h4>Leak Detection</h4>
+                        <p>Hidden leaks can cause major damage. We use advanced acoustic equipment to find leaks without digging.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <!-- Drain Cleaning -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="trash-2"></i></div>
+                        <h4>Drain Cleaning</h4>
+                        <p>Stubborn blockages in sinks, toilets, or external drains cleared quickly using high-pressure jetting.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <!-- Bathroom -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="shower-head"></i></div>
+                        <h4>Bathroom Install</h4>
+                        <p>Complete bathroom refurbishment including tiling, plumbing, and electrical work for a perfect finish.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+                <!-- Heating -->
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i data-lucide="wind"></i></div>
+                        <h4>Heating Services</h4>
+                        <p>Radiator installation, power flushing, and smart thermostat setups to optimize your home heating.</p>
+                        <button class="btn btn-link text-orange p-0 fw-bold" onclick="showPage('contact')">Book Now &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: GALLERY -->
+    <section id="gallery" class="page-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-orange fw-bold">OUR PORTFOLIO</h6>
+                <h2 class="fw-bold">Recent Projects in Didsbury</h2>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800" alt="Work 1">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800" alt="Work 2">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800" alt="Work 3">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=800" alt="Work 4">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=800" alt="Work 5">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=800')">
+                        <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=800" alt="Work 6">
+                        <div class="gallery-overlay"><i data-lucide="maximize-2" class="text-white"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: CONTACT -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-orange fw-bold">GET IN TOUCH</h6>
+                <h2 class="fw-bold">Contact Our Experts</h2>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="bg-light p-4 rounded-3 h-100">
+                        <h4 class="mb-4">Send a Message</h4>
+                        <form id="contactForm" onsubmit="handleForm(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" required placeholder="John Doe">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" required placeholder="+44 ...">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" required placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Service Needed</label>
+                                <select class="form-select">
+                                    <option>Emergency Repair</option>
+                                    <option>Boiler Service</option>
+                                    <option>Installation</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="4" placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-orange w-100 py-3">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <div class="d-flex mb-3">
+                            <i data-lucide="map-pin" class="text-orange me-3"></i>
+                            <div>
+                                <strong>Our Location</strong>
+                                <p class="mb-0">Didsbury, Manchester, UK</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i data-lucide="phone-call" class="text-orange me-3"></i>
+                            <div>
+                                <strong>Emergency Phone</strong>
+                                <p class="mb-0"><a href="tel:+441614102470" class="text-decoration-none text-dark">+44 161 410 2470</a></p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i data-lucide="calendar" class="text-orange me-3"></i>
+                            <div>
+                                <strong>Working Hours</strong>
+                                <p class="mb-0">Mon - Sun: 24/7 (Emergency Service)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19020.24403328331!2d-2.2471618!3d53.4149811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb3c32860d84d%3A0xc3f9a7444c9b1392!2sDidsbury%2C%20Manchester!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">My Plumbers Didsbury</h4>
+                    <p class="opacity-75">Your local, reliable plumbing specialists. Available 24/7 for emergency repairs across Didsbury and surrounding areas.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white opacity-75"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="text-white opacity-75"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-white opacity-75"><i data-lucide="instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none opacity-75 mb-2 d-block" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" class="text-white text-decoration-none opacity-75 mb-2 d-block" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#" class="text-white text-decoration-none opacity-75 mb-2 d-block" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" class="text-white text-decoration-none opacity-75 mb-2 d-block" onclick="showPage('gallery')">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p class="mb-2"><i data-lucide="phone" class="me-2 text-orange"></i> <a href="tel:+441614102470" class="text-white text-decoration-none">+44 161 410 2470</a></p>
+                    <p class="mb-2"><i data-lucide="mail" class="me-2 text-orange"></i> info@didsburyplumbers.co.uk</p>
+                    <p class="mb-2"><i data-lucide="map-pin" class="me-2 text-orange"></i> Didsbury, Manchester, M20</p>
+                    <div class="mt-3 p-3 bg-dark-subtle rounded text-dark">
+                        <small><strong>Emergency Plumbing Services in Didsbury</strong></small>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="text-center opacity-75">
+                <p>&copy; 2025 My Plumbers Didsbury. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Actions -->
+    <a href="tel:+441614102470" class="sticky-call btn btn-orange shadow-lg d-md-none">
+        <i data-lucide="phone-call" class="me-2"></i> Call for Help
+    </a>
+    
+    <a href="https://wa.me/441614102470" class="whatsapp-float">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <div class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo(0,0)">
+        <i data-lucide="chevron-up"></i>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightboxImg" src="" alt="Zoomed">
+    </div>
+
+    <!-- Bootstrap & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Handle Page Switching
+        function showPage(pageId) {
+            // Update Active Link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.textContent.toLowerCase() === pageId) link.classList.add('active');
+            });
+
+            // Update Section Visibility
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const activeSection = document.getElementById(pageId);
+            activeSection.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0,0);
+
+            // Close mobile navbar
+            const navbar = document.querySelector('.navbar-collapse');
+            if(navbar.classList.contains('show')) {
+                bootstrap.Collapse.getInstance(navbar).hide();
+            }
+        }
+
+        // Lightbox Logic
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            lbImg.src = src;
+            lb.style.display = 'flex';
+        }
+
+        // Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // Success Modal Simulation
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success mt-3';
+                alertDiv.innerHTML = 'Thank you! Your request has been sent. We will call you shortly.';
+                e.target.appendChild(alertDiv);
+                e.target.reset();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                setTimeout(() => alertDiv.remove(), 5000);
+            }, 1500);
+        }
+
+        // Scroll Effects
+        window.onscroll = function() {
+            const navbar = document.querySelector('.navbar');
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            
+            if (window.scrollY > 50) {
+                navbar.style.background = '#111c2e';
+                navbar.style.padding = '0.5rem 0';
+                scrollBtn.style.display = 'flex';
+            } else {
+                navbar.style.background = '#1a2a44';
+                navbar.style.padding = '1rem 0';
+                scrollBtn.style.display = 'none';
+            }
+        };
+
+        // Smooth Scroll for local anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
